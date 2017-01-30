@@ -1,0 +1,41 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class wektory : MonoBehaviour {
+
+    public GameObject cyl1, kula, odwolaniedoKuli;
+    public Vector3 vek1, vek2, vek3;
+    bool kierunek = false;
+
+	// Use this for initialization
+	void Start () {
+        Instantiate(cyl1, vek1, Quaternion.identity);
+        Instantiate(cyl1, vek2, Quaternion.identity);
+
+        odwolaniedoKuli = (GameObject)Instantiate(kula, vek3, Quaternion.identity);
+
+    }
+	
+	// Update is called once per frame
+	void Update () {
+        float dist1 = Vector3.Distance(odwolaniedoKuli.transform.position, vek1);
+        float dist2 = Vector3.Distance(odwolaniedoKuli.transform.position, vek2);
+
+        if(kierunek == false)
+        {
+            odwolaniedoKuli.transform.position += new Vector3(-0.1f, 0, 0);
+        }
+        else
+        {
+            odwolaniedoKuli.transform.position -= new Vector3(-0.1f, 0, 0);
+        }
+
+        if (dist1 <= 0.5f)
+             kierunek = true;
+        if (dist2 <= 0.5f)
+            kierunek = false;
+
+        
+    }
+}
